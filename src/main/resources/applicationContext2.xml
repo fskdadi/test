@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:tx="http://code.alibabatech.com/schema/dubbo"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/cache
+       http://www.springframework.org/schema/cache/spring-cache.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--1、制定当前服务的名称，（同样的服务名字项目，不要和其他的服务同名）-->
+    <dubbo:application name="provider"></dubbo:application>
+    <!--2/ 制定注册中心的位置-->
+    <dubbo:registry address="zookeeper://192.168.19.132:2181"></dubbo:registry>
+    <!--<dubbo:registry protocol="zookeeper" address="192.168.25.128:2181" />-->
+    <!--3/指定通信规则-->
+    <dubbo:protocol name="dubbo" port="20880" />
+
+    <!--4/ 声明需要暴露的服务接口 -->
+    <dubbo:service interface="service.UserService" ref="userserviceImpl" />
+
+    <!--5/和本地bean一样实现服务 -->
+    <bean id="userserviceImpl" class="service.impl.UserServiceImpl" />
+
+    <!--注意：第四步和第五步中的ref和id相对应。 -->
+
+
+</beans>
