@@ -10,7 +10,6 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     public User queryUser(Long userId){
-        System.out.println("UserServiceImpl start master");
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
